@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light & Animated Sign Up Page</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f1f5f9; /* Soft light gray-blue background */
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background Moving Blobs (Left to Right Moving Animation) */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #bfdbfe, #dbeafe); /* Soft pastel blue */
+            animation: floatLR 10s infinite alternate ease-in-out;
+            z-index: 1;
+            filter: blur(30px);
+            opacity: 0.8;
+        }
+
+        body::after {
+            background: linear-gradient(45deg, #fbcfe8, #fae8ff); /* Soft pastel pink/purple */
+            animation-delay: -5s;
+            right: 10%;
+            bottom: 15%;
+        }
+
+        body::before {
+            left: 10%;
+            top: 15%;
+        }
+
+        /* Background continuous animation */
+        @keyframes floatLR {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(50px) translateY(-20px); }
+        }
+
+        /* Sign Up Card Container with LEFT TO RIGHT Entry Animation */
+        .signup-container {
+            position: relative;
+            width: 420px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.75); /* Clean white translucency */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(148, 163, 184, 0.15);
+            z-index: 10;
+            
+            /* Left to Right Entry Animation */
+            opacity: 0;
+            transform: translateX(-100px); /* Starts 100px to the left */
+            animation: fadeInLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* Keyframes for Left to Right movement */
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0); /* Moves to original center position */
+            }
+        }
+
+        /* Heading */
+        .signup-container h2 {
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .signup-container p {
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Input Fields styling */
+        .input-group {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            outline: none;
+            color: #334155;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Input Focus Border Animation Effect */
+        .input-group input:focus {
+            border-color: #3b82f6;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Floating Label Setup */
+        .input-group label {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Floating Label Animation triggers */
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label {
+            top: 0;
+            left: 12px;
+            font-size: 0.8rem;
+            color: #3b82f6;
+            background: #ffffff;
+            padding: 0 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Terms & Conditions Checkbox */
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 25px;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        .terms input[type="checkbox"] {
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+
+        .terms a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button styling */
+        .signup-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .signup-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Login link */
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        .login-link a {
+            color: #db2777; /* Rose accent */
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <p>Get started with your free account today.</p>
+        
+        <form id="signupForm" onsubmit="handleSignUp(event)">
+            
+            <!-- Full Name Input -->
+            <div class="input-group">
+                <input type="text" id="fullname" required autocomplete="off">
+                <label for="fullname">Full Name</label>
+            </div>
+
+            <!-- Email Input -->
+            <div class="input-group">
+                <input type="email" id="email" required autocomplete="off">
+                <label for="email">Email Address</label>
+            </div>
+
+            <!-- Password Input -->
+            <div class="input-group">
+                <input type="password" id="password" required>
+                <label for="password">Password</label>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="terms">
+                <input type="checkbox" id="agree" required>
+                <label for="agree">I agree to the <a href="#">Terms & Conditions</a></label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="signup-btn">Sign Up</button>
+
+            <!-- Login Footer -->
+            <div class="login-link">
+                Already have an account? <a href="#">Sign In</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function handleSignUp(event) {
+            event.preventDefault();
+            const button = document.querySelector('.signup-btn');
+            
+            button.innerText = 'Creating Account...';
+            button.style.opacity = '0.8';
+            button.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                alert('Account created successfully!');
+                button.innerText = 'Sign Up';
+                button.style.opacity = '1';
+                button.style.pointerEvents = 'all';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
