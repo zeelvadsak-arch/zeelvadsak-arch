@@ -8,7 +8,7 @@ I'm a passionate **Full Stack Developer** who enjoys building modern, scalable, 
 * 💼 Role: Full Stack Developer
 * 🎯 Goal: Build impactful digital products and contribute to innovative projects
 * 🔥 Interests: Web Development, AI Applications, Image Processing, Open Source
-* 📫 Reach Me: [your.email@example.com](mailto:your.email@example.com)
+* 📫 Reach Me: zeelvadsak@gmail.com
 
 ---
 
